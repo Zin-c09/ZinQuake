@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="my">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZinQuake — ငလျင်သတင်း</title>
+  <meta name="description" content="Live earthquake news from USGS — map, filters and useful links. Myanmar / English / 日本語.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>🌏 ZinQuake <small data-i18n="subtitle">ငလျင်သတင်း</small></h1>
+    <div class="top-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="my">မြန်မာ</button>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="ja">日本語</button>
+      </div>
+      <span id="source" class="badge">…</span>
+    </div>
+  </header>
+
+  <form id="filters" class="filters">
+    <label><span data-i18n="period">ကာလ</span>
+      <select name="period">
+        <option value="hour" data-i18n="hour">၁ နာရီ</option>
+        <option value="day" data-i18n="day" selected>၁ ရက်</option>
+        <option value="week" data-i18n="week">၁ ပတ်</option>
+        <option value="month" data-i18n="month">၁ လ</option>
+      </select>
+    </label>
+    <label><span data-i18n="minmag">Magnitude ≥</span>
+      <select name="minmag">
+        <option value="0" data-i18n="all">အားလုံး</option>
+        <option value="2.5" selected>2.5</option>
+        <option value="4.5">4.5</option>
+        <option value="6">6.0</option>
+      </select>
+    </label>
+    <label><span data-i18n="search">နေရာ ရှာ</span>
+      <input name="q" type="search" data-i18n-ph="searchPh" placeholder="Myanmar, Japan, Thailand…">
+    </label>
+    <button type="submit" data-i18n="refresh">ပြန်ရှာ</button>
+  </form>
+
+  <section class="stats" id="stats"></section>
+  <div id="map" class="map" role="img" aria-label="Earthquake map"></div>
+
+  <main>
+    <section>
+      <h2 data-i18n="news">📰 နောက်ဆုံး ငလျင်သတင်း</h2>
+      <p id="status" class="muted">Loading…</p>
+      <ul id="list" class="list"></ul>
+    </section>
+
+    <aside>
+      <h2 data-i18n="links">🔗 အသုံးဝင် Website / API</h2>
+      <ul id="links" class="links"></ul>
+      <h2 data-i18n="safety">🛟 ငလျင်လှုပ်ရင်</h2>
+      <ol class="tips">
+        <li data-i18n="tip1"></li>
+        <li data-i18n="tip2"></li>
+        <li data-i18n="tip3"></li>
+        <li data-i18n="tip4"></li>
+      </ol>
+    </aside>
+  </main>
+
+  <footer class="muted">Data: <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">USGS</a> · <span data-i18n="footer">auto-refresh 60s</span></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
