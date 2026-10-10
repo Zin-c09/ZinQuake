@@ -97,3 +97,62 @@ footer { padding: 16px; text-align: center; font-size: .8rem; }
 }
 .lang button + button { border-left: 1px solid var(--line); }
 .lang button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+
+/* ---- tools row ---- */
+.tools { display: flex; gap: 8px; flex-wrap: wrap; }
+.filters button.ghost, button.ghost {
+  font: inherit; font-size: .85rem; padding: 6px 10px; border-radius: 8px; cursor: pointer;
+  background: var(--card); color: var(--text); border: 1px solid var(--line);
+}
+button.ghost[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+/* ---- summary: stats + strongest quake ---- */
+.summary { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 16px 12px; align-items: stretch; }
+.summary .stats { padding: 0; }
+.hero {
+  flex: 1 1 320px; display: flex; gap: 14px; align-items: center;
+  background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+  border-radius: 12px; padding: 12px 14px;
+}
+.hero .info { min-width: 0; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.hero-label { font-size: .75rem; color: var(--muted); }
+.hero .place { font-size: 1.05rem; }
+.hero button { margin-top: 6px; }
+.mag.big { width: 72px; height: 72px; font-size: 1.6rem; }
+
+/* ---- charts ---- */
+.charts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; padding: 16px 16px 0;
+}
+.chart { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+.chart figcaption { font-weight: 600; font-size: .9rem; margin-bottom: 6px; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .bar { fill: var(--accent); }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .axis { stroke: var(--muted); stroke-width: 1; }
+.chart .tick { fill: var(--muted); font-size: 11px; }
+.chart .hit { fill: transparent; cursor: default; }
+.chart .hit:hover { fill: var(--text); fill-opacity: .06; }
+.tooltip {
+  position: fixed; z-index: 1000; pointer-events: none;
+  background: var(--text); color: var(--bg); font-size: .8rem; padding: 4px 8px; border-radius: 6px;
+}
+
+/* ---- toast for new-quake alerts ---- */
+.toast {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 1001;
+  background: var(--m-high); color: #fff; font-weight: 600; padding: 10px 16px; border-radius: 10px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / .25); max-width: calc(100% - 32px);
+}
+
+/* ---- map legend ---- */
+.legend {
+  background: var(--card); color: var(--text); padding: 6px 10px; border-radius: 8px;
+  border: 1px solid var(--line); font-size: .75rem; line-height: 1.6;
+}
+.legend b { display: block; }
+.legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+.legend .dot.low { background: var(--m-low); }
+.legend .dot.mid { background: var(--m-mid); }
+.legend .dot.high { background: var(--m-high); }
+.legend .dot.severe { background: var(--m-severe); }
