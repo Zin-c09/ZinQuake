@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backends:
+    name: Python / PHP / Java contract test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Syntax checks
+        run: |
+          python3 -m py_compile python/server.py tests/contract_test.py
+          php -l php/index.php
+          node --check web/app.js
+          node --check web/i18n.js
+      - name: All three backends return the same answers
+        run: REQUIRE_ALL=1 python3 tests/contract_test.py
